@@ -1,0 +1,46 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.achang.dao.UserDao">
+
+    <!--查询所有-->
+    <select id="findAll" resultType="User">
+        select id,name,age,salary,phoneNumber from t_user
+    </select>
+
+    <!--保存用户-->
+    <insert id="save" parameterType="User">
+        insert into t_user VALUES(#{id},#{name},#{age},#{salary},#{phoneNumber})
+    </insert>
+
+    <!--根据id删除用户-->
+    <delete id="deleteById" parameterType="String">
+        delete from t_user where id = #{id}
+    </delete>
+
+    <!--根据id查询一个用户信息-->
+    <select id="findOne" resultType="User" parameterType="String">
+        select id,name,age,salary,phoneNumber from t_user where id = #{id}
+    </select>
+
+    <!--根据id修改用户信息-->
+    <update id="update" parameterType="User">
+        update t_user set name=#{name},age=#{age},salary=#{salary},phoneNumber=#{phoneNumber}
+        where id = #{id}
+    </update>
+
+    <!--处理模糊检索
+            动态sql，根据是否有name，num来动态的检索
+    -->
+    <select id="findNameOrPhoneNumber" resultType="User">
+        select id,name,age,salary,phoneNumber from t_user
+        <where>
+            <if test="name!=''">
+                name like concat(#{name},'%')
+            </if>
+            <if test="num!=''">
+               OR phoneNumber like concat('%',#{num},'%')
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

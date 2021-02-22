@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03.在局部组件中使用prop接收数据</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <!--0.5、使用组件
+        1、给组件上定义name属性，值为'阿昌'
+    -->
+    <login name="阿昌" age="23"></login>
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //声明一个组件配置对象
+    let login = {
+        //3、通过{{name}}来获取，下面 通过props属性获取上面组件定义的name属性
+        template:"<div><h1>欢迎{{name}},{{age}}</h1></div>",
+        //2、通过props属性，通过数组，定义上面同名的name属性，用来接收
+        props:['name','age']
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{
+            login //0、注册组件； 此处组件配置对象名和组件名一样，可以省略写为一个
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+server:
+  port: 6161
+  servlet:
+    context-path: /users #项目名
+
+spring:
+  application:
+    name: user #应用名【在单体架构中没有意义，在微服务系统中代表着该服务系统的唯一标识】
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource #使用德鲁伊数据库连接池
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bootvue?characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+    username: 'root'
+    password: '00000'
+
+mybatis:
+  mapper-locations: classpath:com.achang.mapper/*.xml
+  type-aliases-package: com.achang.entity #指定bean对象包
+
+
+

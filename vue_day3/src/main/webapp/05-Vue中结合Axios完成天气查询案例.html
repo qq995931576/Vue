@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-Vue中结合Axios完成天气查询案例</title>
+
+</head>
+<body>
+
+<div id="app">
+
+
+    <input type="text" v-model="cityName" @keyup.delete="shows" @keyup.enter="searchCity"> <input type="button" value="搜索" @click="searchCity"/> <br>
+
+    <span v-for="city in citys">
+        <a href="" @click.prevent="searchCitys(city)" >{{city}}&nbsp&nbsp</a>
+
+    </span>
+
+    <hr>
+
+    <span v-show="isShow">{{cityName}}，今天的天气是：{{msg}}</span>
+
+
+
+
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            citys:["北京","温州","杭州","重庆"],
+            cityName:"",
+            msg:"",
+            isShow:false
+        },
+        methods: {
+            searchCity(){
+                //获取输入城市的信息
+                console.log(this.cityName);
+                let appthis = this;
+                //发送axios请求
+                axios.get("http://localhost:8989/weather/find?name=" + this.cityName)
+                .then(function (resp){
+                    appthis.msg=resp.data.msg;
+                    appthis.isShow=true
+
+                }).catch(function (err){
+                    console.log(err);
+                })
+            },
+            shows(){
+                this.isShow=false;
+            },
+            searchCitys(cityName){
+                this.cityName=cityName;
+                this.searchCity(); //函数中调用函数
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

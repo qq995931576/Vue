@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的第一个入门案例</title>
+
+
+</head>
+<body>
+
+    <div id="app">
+
+        <h3>{{ msg }}</h3><br>
+        <h3>
+            名称：{{ user.name }} <br>
+            年龄: {{ user.age }}<br>
+            第一个城市：{{ lists[0] }}<br>
+            第二个城市: {{ lists[1] }}<br>
+            全部城市: {{ lists }}<br>
+            <br>
+            小白： {{ users[0] }}
+            小白名字： {{ users[0].name}}<br>
+            小黑： {{ users[1] }}
+            小黑年龄： {{ users[1].age }}<br>
+            小黑&小白： {{ users }}<br>
+        </h3>
+
+    </div>
+
+    <!--引入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+           el:"#app",
+            data:{
+               msg:"hello vue",
+                // 可定义 数组，对象
+               user:{name:"阿昌",age:"18"},
+               lists:["温州","杭州","宁波","台州"],
+               users:[{name:"小白",age:"18"},{name:"小黑",age:"18"}]
+
+            }
+        });
+    </script>
+
+</body>
+</html>

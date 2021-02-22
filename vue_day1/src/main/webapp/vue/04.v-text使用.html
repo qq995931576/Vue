@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的第一个入门案例</title>
+
+
+</head>
+<body>
+
+
+    <div id="app">
+        <!--通过 {{ }} 获取data属性中的变量-->
+        <span>{{ msg }}不会被覆盖</span>
+
+        <br>
+
+        <!--通过 v-text属性 来获取data属性中的变量，也可以在里面使用表达式、运算符等 -->
+        <span v-text="msg+ '!' ">会被覆盖</span>
+
+        <hr>
+
+        <!--不会解析标签-->
+        <span>{{message}}</span>
+        <br>
+        <!--不会解析标签-->
+        <span v-text="message"></span>
+        <br>
+        <!--会解析标签-->
+        <span v-html="message"></span>
+
+
+
+    </div>
+
+    <!--引入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+           el:"#app",
+            data:{
+                msg:"阿昌学vue",
+                message:"<a href=''>阿昌学vue</a>"
+            }
+
+        });
+    </script>
+
+</body>
+</html>

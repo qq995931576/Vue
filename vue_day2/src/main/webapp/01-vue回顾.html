@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue复习</title>
+</head>
+<body>
+
+<div id="app">
+
+    <span>{{msg}}</span><br>
+    <span>{{age==23}}</span><br>
+    <span>{{arr}}</span><br>
+    <span>{{arr[0]+'!!!'}}</span><br>
+    <span>{{arr[1]}}</span><br>
+    <span>{{arr[2]}}</span><br>
+    <span>{{user}}</span><br>
+    <span>{{user.name.toUpperCase()}}</span><br>
+    <span>{{user.age}}</span><br>
+    <span>{{user.context}}</span><br>
+
+    <hr>
+
+    <span v-text="msg">阿昌</span><br>
+
+    <hr>
+
+    <span v-text="message">阿昌</span><br>
+    <span v-html="message">阿昌</span><br>
+
+</div>
+    <!--
+        1、v-text v-html 指令 ，v-text相当于js innerText  v-html相当于js innerHtml
+            注意：指令里面不需要写插值表达式，直接写对应数据变量名即可
+                都会将原本标签的值进行覆盖
+    -->
+
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+       el:"#app",
+        data:{
+           message:"<a href=''>我的超链接</a>",
+           msg:"阿昌学vue！",
+            age:23,
+            arr:["温州","杭州","台州"],
+            user:{name:"achang",age:18,context:"阿昌学vvvue"}
+        },
+        methods:{}
+    });
+
+</script>
+</body>
+</html>

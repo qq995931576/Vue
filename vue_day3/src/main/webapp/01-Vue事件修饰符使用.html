@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-Vue事件修饰符使用</title>
+    <style>
+        .aa{
+            background: red;
+            width: 300px;
+            height: 300px;
+
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <!--只触发标签自身的事件-->
+    <div class="aa" @click.self="divClick">
+        <!--事件后面.stop，来阻止事件冒泡-->
+        <input type="button" value="按钮1" @click.stop="btnClick">
+        <input type="button" value="按钮2" @click.once="btnClick1">
+    </div>
+
+    <hr>
+
+    <!--事件后面.prevent，来阻止事件默认行为-->
+    <a href="http://www.baidu.com" @click.prevent ="aClick">阿昌学vue</a>
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+            btnClick(){
+                alert("btn被点击了")
+            },
+            divClick(){
+              alert("div被点击了")
+            },
+            aClick(){
+              alert("a被点击了")
+            },
+            btnClick1(){
+                alert("btnClick1被点击了")
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

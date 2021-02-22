@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的v-bind使用</title>
+
+    <style>
+        .aa{
+            border: 2px red solid;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="app">
+
+    <img :src="src" :class="showCss?'aa':'' ">
+
+    <input type="button" value="动态控制标签加入样式" @click="addCss">
+
+        <input type="button" value="改变图片" @click="changeageSrc">
+
+    </div>
+
+    <!--引入vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+           el:"#app",
+           data:{
+               showCss:true,
+               src:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1121761249,1056662297&fm=15&gp=0.jpg"
+           },
+           methods:{
+               addCss(){
+                   this.showCss = !this.showCss
+               },
+               changeageSrc(){
+                   this.src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181127%2F34959609548946adb0d1823b5d11f18f.png&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616048819&t=a392cb0358779360c440b0ffbbbdecaa"
+               }
+           }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-Axios的GET方式的请求</title>
+
+</head>
+<body>
+
+<div id="app">
+
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    //发送POST方式请求
+    axios.post("http://localhost:8989/user/save",{
+        username:"achang",
+        age:"23",
+        email:"995931576@qq.com",
+        phone:"165534841"
+    }).then(function (resp){
+        console.log(resp.data)
+    }).catch(function (error){
+        console.log(error)
+    })
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {}
+    });
+</script>
+
+</body>
+</html>

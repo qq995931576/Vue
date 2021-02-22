@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04.在局部组件中使用prop接收动态数据</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <login></login>
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //声明组件的配置对象
+    const login ={
+        template:"<div><h1>欢迎：{{msg}}</h1><ul><li v-for='index,item in lists'>{{index}} &nbsp;{{item}}</li></ul></div>",
+        data(){  //使用data函数的方式定义组件的数据； 在template属性中通过【{{}}插值表达式】直接获取即可
+            return {
+                msg:"hello",
+                lists:['java','c#',"c"]
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            username:"阿昌昌",
+        },
+        methods: {},
+        components:{
+            login //注册组件
+        }
+    });
+</script>
+
+</body>
+</html>

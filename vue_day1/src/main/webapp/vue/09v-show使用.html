@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的v-show使用</title>
+
+
+</head>
+<body>
+
+    <div id="app">
+        <!--
+            v-show： 用来控制标签展示还是隐藏的
+        -->
+
+        <h2 v-show="true">阿昌学vue</h2>
+        <h2 v-show="show">阿昌学vue，这是vue中定义变量true！</h2>
+
+        <input type="button" value="展示标签" @click="showmsg">
+
+        <h2 v-show="age>=30">阿昌gogogoog</h2>
+        <input type="button" @click="changeageAge" value="通过修改age值控制标签展示">
+
+    </div>
+
+    <!--引入vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+           el:"#app",
+           data:{
+               show:false,
+               age:"23"
+           },
+           methods:{
+               showmsg(){
+                   this.show=!this.show;
+               },
+               changeageAge(){
+                   this.age++;
+               }
+
+           }
+        });
+    </script>
+
+</body>
+</html>

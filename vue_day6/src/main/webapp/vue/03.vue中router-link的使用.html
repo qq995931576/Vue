@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.vue中路由使用</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <a href="#/register">点我注册</a>
+    <a href="#/login">点我登录</a>
+    <br><hr>
+
+    <!--【router-link】
+     好处：书写路由路径不需要写 # 了
+     to属性： 用来书写要去的路径
+     tag属性： 将这个router-link标签渲染成你想要的，如下面的button
+     -->
+    <router-link to="/register" tag="button">我要注册</router-link>
+    <router-link to="/login" tag="button">我要登录</router-link>
+
+    <!--4、显示路由的组件-->
+    <router-view></router-view>
+
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入axios js-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--引入vue-router-->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+
+    //1、声明组件模板
+    const login={
+        template:"<div><h1>用户登录</h1></div>"
+    }
+    const register={
+        template:"<div><h1>用户注册</h1></div>"
+    }
+
+    //2、创建路由对象
+    const router = new VueRouter({
+        routes:[ //配置路由规则
+            // 因为默认访问的是“/”，使用设置“/”，的component属性，就可以指定默认路由地址
+            // { path:'/',component:login},
+
+            //redirect: 用来当访问的是默认路由 "/" 时 跳转到指定的路由展示  推荐使用
+            {path:"/",redirect:'/register'},
+
+            {path:"/login",component:login},
+            {path:"/register",component:register},
+        ]
+    });
+
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components: {},
+        //3、将路由对象注册到Vue实例中
+        router
+    });
+</script>
+
+</body>
+</html>

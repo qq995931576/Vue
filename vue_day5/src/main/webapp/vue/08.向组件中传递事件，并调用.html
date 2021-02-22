@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08.向组件中传递事件，并调用</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <login :name="username" @aaa="findAll"></login>
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //组件声明
+    const login = {
+        template:"<div><h1>阿昌学vue，{{uname}}</h1><input type='button' @click='change' value='点我触发'></div>>",
+        data(){
+          return{
+              uname:this.name,
+          }
+        },
+        props:['name'],
+        methods: {
+            change(){
+                //在login组件的函数change,去调用vue实例的函数
+                this.$emit('aaa');
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            username:"阿昌",
+        },
+        methods: {
+            findAll(){
+                alert("vue实例中定义的函数")
+            }
+        },
+        components: {
+            //组件注册
+            login
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的v-for使用</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <span>{{user.name}} , {{user.age}}</span><br>
+
+    <!--
+        通过v-for遍历对象
+     -->
+    <span v-for="(value,key,index) in user">
+        {{index}} : {{key}} : {{value}}
+    </span><br>
+
+    <!--
+        通过v-for遍历数组
+    -->
+    <ul>
+        <li v-for="a,index in arr">{{index}} {{a}}</li>
+    </ul>
+
+    <!--
+        通过v-for遍历数组中对象
+        :key 便于vue内部做重用和排序
+    -->
+    <ul>
+        <li v-for="user,index in users" :key="user.id">
+            {{index}}==={{user.id}}==={{user.name}}===={{user.age}}
+        </li>
+    </ul>
+
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            user:{name:"阿昌",age:23},
+            arr:["温州","杭州","台州"],
+            users:[
+                {id:"1",name:"小黑",age:16},
+                {id:"2",name:"小白",age:16}
+            ]
+        },
+        methods: {}
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-使用路由开发页面</title>
+    <!--引入bootstrap核心css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div id="app">
+
+    <div class="container">
+        <div class="row" style="margin-top: 70px">
+            <div class="col-md-10 col-md-offset-1">
+                <!--导航-->
+                <ul class="nav nav-pills nav-justified">
+                    <!--通过:class=showActive，将其绑定给vue实例的showActive变量-->
+                    <li role="presentation" :class="showActive=='index'?'active':''" @click="changeActive('index')"><a href="#/index">主页</a></li>
+                    <li role="presentation" :class="showActive=='user'?'active':''" @click="changeActive('user')"><a href="#/user">用户管理</a></li>
+                    <li role="presentation" :class="showActive=='student'?'active':''" @click="changeActive('student')"><a href="#/student">学生管理</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <!--显示路由组件内容-->
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--组件必有容器来承装-->
+<template id="index">
+    <div>
+        <div class="jumbotron" style="margin-top: 30px">
+            <h1>Hello, world!</h1>
+            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
+    </div>
+</template>
+
+<template id="user">
+    <div>
+        <table class="table table-striped table-bordered" style="margin-top: 30px">
+            <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>生日</th>
+                <th>操作</th>
+            </tr>
+            <!--遍历users-->
+            <tr v-for="user in users">
+                <th>{{user.id}}</th>
+                <th>{{user.name}}</th>
+                <th>{{user.age}}</th>
+                <th>{{user.bir}}</th>
+                <th>
+                    <a href="" class="btn btn-default">修改</a>
+                    <a href="" class="btn btn-danger">删除</a>
+                </th>
+            </tr>
+        </table>
+    </div>
+</template>
+
+<template id="student">
+    <div>
+        <table class="table table-striped table-bordered" style="margin-top: 30px">
+            <tr>
+                <th>id</th>
+                <th>学生姓名</th>
+                <th>学历</th>
+                <th>邮箱</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>阿昌</th>
+                <th>幼儿园</th>
+                <th>995931576@qq.com</th>
+                <th>
+                    <a href="" class="btn btn-default">修改</a>
+                    <a href="" class="btn btn-danger">删除</a>
+                </th>
+            </tr>
+        </table>
+    </div>
+</template>
+
+
+
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入axios js-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--引入vue-router-->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+
+    //1、【主页】组件配置对象
+    const index = {
+        template:"#index"
+    }
+    //2、【用户管理】组件配置对象
+    const user = {
+        template:"#user",
+        data(){
+            return{
+                users:[],
+            }
+        },
+        methods:{},
+        created(){
+            let _this = this;
+            //发送查询所有用户信息
+            axios.get("http://localhost:8080/user/findAll").then(function (resp) {
+                console.log(resp.data);
+                _this.users = resp.data;
+            })
+        }
+    }
+    //3、【学生管理】组件配置对象
+    const student = {
+        template:"#student"
+    }
+
+    //4、使用路由
+    const router = new VueRouter({
+        routes:[
+            {path:'/',redirect:'/index'},//设置默认路由
+            {path:'/index',component:index},
+            {path:'/user',component:user},
+            {path:'/student',component:student}
+        ]
+    });
+
+
+
+
+
+    //vue实例
+    const app = new Vue({
+        el: "#app",
+        data: {
+            showActive:'home',
+        },
+        methods: {
+            changeActive(value){
+                this.showActive=value
+            }
+        },
+        components: {},
+        //注册路由对象
+        router
+    });
+</script>
+
+</body>
+</html>

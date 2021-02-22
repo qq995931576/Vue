@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的事件使用</title>
+
+
+</head>
+<body>
+
+
+    <div id="app">
+        <span>{{count}}</span>
+        <input type="button" value="改变count的值" @click="changeageCount">
+    </div>
+
+    <!--引入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+           el:"#app",
+            data:{
+                count:"1"
+            },
+            methods:{
+                // changeageCount:function (){
+                //     this.count++;
+                // }
+                changeageCount(){
+                    this.count++;
+                }
+
+            }
+
+        });
+    </script>
+
+</body>
+</html>

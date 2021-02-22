@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.全局组件的开发</title>
+
+</head>
+<body>
+
+<div id="app">
+    <!--使用全局组件
+        组件名 + 标签
+    -->
+        <login></login>
+
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    //全局组件注册
+    //Vue的component属性：（参数1：组件名称 ； 参数2：{组件配置对象} template属性：用来书写组件的html代码(注意：在template中必须只存放一个容器)
+    Vue.component('login',{
+        template:'<div><h1>用户登录</h1></div>'
+    })
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {}
+    });
+</script>
+
+</body>
+</html>

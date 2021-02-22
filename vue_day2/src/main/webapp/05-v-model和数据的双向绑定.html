@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-v-model和数据的双向绑定</title>
+
+</head>
+<body>
+
+<div id="app">
+    <input type="text" v-model="message">
+
+    <span>{{message}}</span>
+    <hr>
+    <input type="button" value="改变Data值" @click="changeValue">
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message:""
+        },
+        methods: {
+            changeValue(){
+                this.message=5
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

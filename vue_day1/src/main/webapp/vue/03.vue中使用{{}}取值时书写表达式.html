@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的第一个入门案例</title>
+
+
+</head>
+<body>
+
+
+    <div id="app" class="aa">
+        <span>
+            <!--可书写 表达式, 运算符 ,调用相关 方法 ,以及 逻辑运算 等-->
+            {{ msg.toUpperCase() + ' ！'}}
+        </span>
+
+    </div>
+
+    <!--引入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            //使用类选择器
+           el:".aa",
+            data:{
+               msg:"hello vue"
+
+            }
+        });
+    </script>
+
+</body>
+</html>

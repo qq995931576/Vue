@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: vue #项目名
+  datasource:
+    password: '00000'
+    username: 'root'
+    type: com.alibaba.druid.pool.DruidDataSource #使用Druid数据连接池
+    driver-class-name: com.mysql.jdbc.Driver #数据库驱动
+    url: jdbc:mysql://localhost:3306/bootvue?characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+
+server:
+  port: 6161
+  servlet:
+    context-path: /vue #项目路径
+
+
+mybatis:
+  mapper-locations: classpath:com.achang.mapper/*.xml #指定sql映射文件位置
+  type-aliases-package: com.achang.entity #指定bean对象位置
+

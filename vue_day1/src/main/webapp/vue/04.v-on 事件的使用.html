@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的事件使用</title>
+
+
+</head>
+<body>
+
+    <!--
+        1、页面中提供按钮
+        2、按钮绑定单击事件 onclick onmove onmouseover onkeyup ...
+        3、单击事件中修改年龄的值，同时渲染页面
+    -->
+
+    <div id="app">
+
+        <h2>{{msg}}</h2>
+        <h2 v-text="msg"></h2>
+        <h2>年龄： {{age}}</h2>
+        <br>
+        <!--通过v-on指令绑定事件-->
+        <input type="button" value="点我改变年龄" v-on:click="changeage">
+
+    </div>
+
+    <!--引入vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                age:"23",
+                msg:"hello,阿昌学vue！",
+            },
+            methods:{ //methods 用来定义vue中的事件
+                changeage:function (){
+                    //在函数中获取vue实例中data的数据，在事件函数中this就是vue实例
+                    // this.age= this.age+1;
+                    this.age++;//当前vue对象的age属性值++
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>

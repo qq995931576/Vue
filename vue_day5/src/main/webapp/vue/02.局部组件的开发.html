@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.全局组件的开发</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <login></login>
+
+
+
+</div>
+
+<template id="loginTemplate">
+    <h1>用户登录</h1>
+</template>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    let login = {
+        template:'#loginTemplate'
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components:{  //用来注册局部组件
+            login:login //注册局部组件
+            // 如果组件名和保存模板配置对象名一样，可以直接使用名字即可
+            // login
+
+        }
+    });
+</script>
+
+</body>
+</html>

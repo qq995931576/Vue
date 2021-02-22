@@ -1,0 +1,35 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.achang.dao.UserDao">
+
+    <!--接口如果有返回值就用resultType指明
+        接口没有返回值，但有传入参数就用parameterType指明
+        又有返回值，又有传入参数，就都用
+    -->
+
+    <!-- useGeneratedKeys="true"把新增加的主键赋值到自己定义的keyProperty（id）中 -->
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into vue_user
+        values(#{id},#{name},#{age},#{bir})
+    </insert>
+
+    <update id="update" parameterType="User">
+        update vue_user
+        set name=#{name},age=#{age},bir=#{bir}
+        where id = #{id}
+    </update>
+
+    <select id="findAll" resultType="User">
+        select id,name,age,bir from vue_user
+    </select>
+
+    <delete id="delete" parameterType="Integer">
+        delete from vue_user
+        where id = #{id}
+    </delete>
+
+    <select id="findById" parameterType="Integer" resultType="User">
+        select id,name,age,bir from vue_user
+        where id = #{id}
+    </select>
+
+</mapper>

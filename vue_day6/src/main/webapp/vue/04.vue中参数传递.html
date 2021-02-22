@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.vue中路由使用</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <router-link to="/login?id=21&name=achang" tag="button">点我登录</router-link>
+    <router-link to="/register/21/achang" tag="button">点我注册</router-link>
+
+    <router-view></router-view>
+
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入axios js-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--引入vue-router-->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+
+    //1、声明组件模板
+    const login = {
+        template:"<div><h1>用户登录，{{this.$route.query.id}}，{{this.$route.query.name}}</h1></div>",
+        data(){return{}},
+        methods:{},
+        created(){
+            console.log("【id】==>"+this.$route.query.id+"，【name】==>"+this.$route.query.name);
+        }
+    };
+    const register = {
+        template:"<div><h1>用户注册，{{this.$route.params.id}},{{this.$route.params.name}}</h1></div>",
+        created(){
+            console.log("【id】==>"+this.$route.params.id+"，【name】==>"+this.$route.params.name);
+        }
+    };
+
+    //2、路由
+    const router = new VueRouter({
+        routes:[
+            {path:"/",redirect:"/login"},
+            {path:"/login",component:login},
+            {path:"/register/:id/:name",component:register},
+        ]
+    });
+
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components: {},
+        //3、注册路由到vue实例中
+        router
+    });
+</script>
+
+</body>
+</html>

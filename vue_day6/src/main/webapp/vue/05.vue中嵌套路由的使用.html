@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.vue中路由使用</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <router-link to="/product" tag="button">商品管理</router-link>
+
+    <!--显示组件-->
+    <router-view></router-view>
+
+
+</div>
+<template id="product">
+    <div>
+        <h1>商品管理</h1>
+        <router-link to="/product/add">商品添加</router-link>
+        <router-link to="/product/update">商品编辑</router-link>
+        <!--显示组件-->
+        <router-view></router-view>
+    </div>
+</template>
+
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入axios js-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--引入vue-router-->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+
+    //1、声明组件模版
+    const product={
+        template:"#product"
+    }
+    const add={
+        template:"<h4>商品添加</h4>"
+    };
+    const update={
+        template:"<h4>商品编辑</h4>"
+    }
+
+
+    //2、定义路由对象
+    const router = new VueRouter({
+       routes:[
+           {
+               path:"/product",
+               component:product,
+               children:[ //设置这个路由中的嵌套路由
+                   {path:"add",component:add},
+                   {path:"update",component:update},
+               ]
+           },
+
+       ]
+    });
+
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components: {},
+        //3、注册路由对象
+        router
+    });
+</script>
+
+</body>
+</html>

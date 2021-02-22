@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-记事本的综合案例</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <input type="text" v-model="text"  >
+    <input type="button" value="添加到记事本" @click="add">
+    <br>
+
+    <ul>
+        <li v-for="item,index in lists">
+          {{index+1}}.{{item}}<a href="javascript:;" @click="delRow(index)" >删除</a>
+        </li>
+    </ul>
+
+    <br>
+    <span >总数量：共 {{lists.length}} 记录</span>
+    <input type="button"  v-show="this.lists.length != 0" value="删除所有" @click="delAll">
+
+
+</div>
+<!--
+    1、完成记事本的查询所有
+        1）将所有数据绑定给vue实例
+        2）遍历vue实例中数据到页面
+    2、添加
+        1）添加按钮绑定事件
+        2）在事件中获取输入框中的数据
+        3）将获取的数据放入到lists里
+    3、删除 删除所有 总数量
+-->
+
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            lists:["阿昌学vue","阿昌gogogo"],
+            text:""
+
+        },
+        methods: {
+            add(){
+                this.lists.push(this.text);
+                this.text="";
+            },
+            delRow(index){
+                this.lists.splice(index,1);//参数1：从哪个下标开始删除；参数2：删除几个元素
+            },
+            delAll(){
+                this.lists=[];
+                // this.lists.splice(0,this.lists.length)
+            }
+
+        }
+    });
+</script>
+
+</body>
+</html>

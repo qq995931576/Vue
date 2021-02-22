@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.vue中路由使用</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <a href="#/register">点我注册</a>
+    <a href="#/login">点我登录</a>
+
+    <!--显示路由的组件-->
+    <router-view></router-view>
+
+
+
+</div>
+
+<!--引入vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--引入axios js-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--引入vue-router-->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+
+    //声明组件模板
+    const login ={
+        template:"<div><h1>用户登录</h1></div>"
+    }
+    const register={
+        template:"<div><h1>用户注册</h1></div>"
+    }
+
+
+    //创建路由对象
+    const router = new VueRouter({
+       routes:[ //设置路由对象的规则
+           //path： 日后请求的路径
+           //component: 绑定组件（此处绑定后，就不需要在vue实例的components属性下绑定）
+           {path:'/login',component:login},
+           {path:'/register',component:register}
+       ],
+
+    });
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        components: {},
+        router:router //设置路由对象
+    });
+</script>
+
+</body>
+</html>
